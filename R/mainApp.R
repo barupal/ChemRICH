@@ -146,14 +146,14 @@ getChemRich_windows <- function (stat_file,cutoff=0.1) {
   ### Get the FP annotations from the CouchDB using CIDS
   idlist <- list()
   idlist$keys <- as.integer(df1$CID)[which(is.na(df1$CID)==FALSE)]
-  urlres <- getURL("http://localhost:5984/chemrichdb_cidfp/_design/data/_view/cid_fp",customrequest='POST',httpheader=c('Content-Type'='application/json'),postfields=RJSONIO::toJSON(idlist))
+  urlres <- getURL("http://chemrich.fiehnlab.ucdavis.edu/db/chemrichdb_cidfp/_design/data/_view/cid_fp",customrequest='POST',httpheader=c('Content-Type'='application/json'),postfields=RJSONIO::toJSON(idlist))
   urlres.list <- RJSONIO::fromJSON(urlres)
   cid.fp.df <- as.data.frame(do.call(rbind, urlres.list$rows), stringsAsFactors = F)
 
   ### Get the FP annotations from the CouchDB using SMILES
   idlist <- list()
   idlist$keys <- df1$SMILES
-  urlres <- getURL("http://localhost:5984/chemrichdb_smilesfp/_design/data/_view/smiles_fp",customrequest='POST',httpheader=c('Content-Type'='application/json'),postfields=RJSONIO::toJSON(idlist))
+  urlres <- getURL("http://chemrich.fiehnlab.ucdavis.edu/db/chemrichdb_smilesfp/_design/data/_view/smiles_fp",customrequest='POST',httpheader=c('Content-Type'='application/json'),postfields=RJSONIO::toJSON(idlist))
   urlres.list <- RJSONIO::fromJSON(urlres)
   smiles.fp.df <- as.data.frame(do.call(rbind, urlres.list$rows), stringsAsFactors = F)
 
@@ -191,7 +191,7 @@ getChemRich_windows <- function (stat_file,cutoff=0.1) {
     }
     elist1<- list()
     elist1$docs <- elist
-    urlres <- getURL("http://localhost:5984/chemrichdb_smilesfp/_bulk_docs",customrequest='POST',httpheader=c('Content-Type'='application/json'),postfields=RJSONIO::toJSON(elist1))
+    urlres <- getURL("http://chemrich.fiehnlab.ucdavis.edu/db/chemrichdb_smilesfp/_bulk_docs",customrequest='POST',httpheader=c('Content-Type'='application/json'),postfields=RJSONIO::toJSON(elist1))
     gc()
   }
 
@@ -202,7 +202,7 @@ getChemRich_windows <- function (stat_file,cutoff=0.1) {
   ## CID_MESH
   idlist <- list()
   idlist$keys <- as.integer(df1$CID)[which(is.na(df1$CID)==FALSE)]
-  urlres <- getURL("http://localhost:5984/chemrichdb_cid/_design/data/_view/cid_tree",customrequest='POST',httpheader=c('Content-Type'='application/json'),postfields=RJSONIO::toJSON(idlist))
+  urlres <- getURL("http://chemrich.fiehnlab.ucdavis.edu/db/chemrichdb_cid/_design/data/_view/cid_tree",customrequest='POST',httpheader=c('Content-Type'='application/json'),postfields=RJSONIO::toJSON(idlist))
   urlres.list <- RJSONIO::fromJSON(urlres)
   cid.mesh.df <- as.data.frame(do.call(rbind, urlres.list$rows), stringsAsFactors = F)
   cid.mesh.df$CID <- unlist(cid.mesh.df$key)
@@ -210,7 +210,7 @@ getChemRich_windows <- function (stat_file,cutoff=0.1) {
   ## SMILES_MESH
   idlist <- list()
   idlist$keys <- df1$SMILES
-  urlres <- getURL("http://localhost:5984/chemrichdb_smiles/_design/data/_view/smiles_tree",customrequest='POST',httpheader=c('Content-Type'='application/json'),postfields=RJSONIO::toJSON(idlist))
+  urlres <- getURL("http://chemrich.fiehnlab.ucdavis.edu/db/chemrichdb_smiles/_design/data/_view/smiles_tree",customrequest='POST',httpheader=c('Content-Type'='application/json'),postfields=RJSONIO::toJSON(idlist))
   urlres.list <- RJSONIO::fromJSON(urlres)
   smiles.mesh.df <- as.data.frame(do.call(rbind, urlres.list$rows), stringsAsFactors = F)
   smiles.mesh.df$SMILES <- unlist(smiles.mesh.df$key)
@@ -307,7 +307,7 @@ getChemRich_windows <- function (stat_file,cutoff=0.1) {
     }
     elist1<- list()
     elist1$docs <- elist
-    urlres <- getURL("http://localhost:5984/chemrichdb_smiles/_bulk_docs",customrequest='POST',httpheader=c('Content-Type'='application/json'),postfields=toJSON(elist1))
+    ##urlres <- getURL("http://localhost:5984/chemrichdb_smiles/_bulk_docs",customrequest='POST',httpheader=c('Content-Type'='application/json'),postfields=toJSON(elist1))
     gc()
   }
 
