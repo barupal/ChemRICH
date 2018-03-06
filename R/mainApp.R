@@ -399,6 +399,7 @@ getChemRich_windows <- function (stat_file,cutoff=0.1) {
     if(max(s[i,])>0.75) {
       simorder <- order(s[i,],decreasing = T)[which(s[i,][order(s[i,],decreasing = T)]>0.75)]
       simorder.class <- sapply(simorder, function(x) { finalterm.df$Clabel[x]})
+      simorder.class <- simorder.class[!is.na(simorder.class)]
       if(simorder.class[1]!=""){
         finalterm.df$Clabel[i] <- simorder.class[which(simorder.class!="")][1]
       } else if(length(simorder.class)>1) {
