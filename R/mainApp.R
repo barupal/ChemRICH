@@ -600,7 +600,7 @@ getChemRich_windows <- function (stat_file,cutoff=0.1) {
       axis.text.y = element_text(size=15,angle = 0, hjust = 1)
     )
   #wbp <- pptx(template = system.file("data","chem_rich_temp.pptx", package = "reportTemplates"))
-  wbp <- pptx(template = "chem_rich_temp.pptx")
+  wbp <- pptx(template = "./data/chem_rich_temp.pptx")
   wbp <- addSlide( wbp, "lipidClust" )
   wbp <- addPlot( wbp,  function() print(p2), offx =0.0 , offy = 0.0, width = 8, height = 6 , vector.graphic = TRUE )
   writeDoc( wbp, file = "chemrich_impact_plot.pptx" )
