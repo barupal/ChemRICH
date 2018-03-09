@@ -776,8 +776,8 @@ getChemRich_windows <- function (stat_file,cutoff=0.1) {
     }
   }
 
-  wbp <- pptx(template = system.file("data","chem_rich_temp.pptx", package = "reportTemplates" )) # use this one when using the installed packages.
-  #wbp <- pptx(template = "./data/chem_rich_temp.pptx")
+  #wbp <- pptx(template = system.file("data","chem_rich_temp.pptx", package = "chemrich" )) # use this one when using the installed packages.
+  wbp <- pptx(template = "./data/chem_rich_temp.pptx")
   wbp <- addSlide( wbp, "lipidClust" )
   wbp <- addPlot( wbp, function() plot.fan.chemrich(hc,clus, dirvec,sizevec), offx =0.1 , offy = -0.1, width = 8, height = 8 , vector.graphic = FALSE )
 
