@@ -3,6 +3,8 @@ R package for Chemical Similarity Enrichment Analysis
 
 ChemRICH installation method
 
+Make sure you have latest JAVA (JDK and JRE both) installed on your computer. [Latest Java](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+
 In R, run the following code.
 ```
 if (!require("devtools"))
