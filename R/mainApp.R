@@ -599,8 +599,8 @@ getChemRich_windows <- function (stat_file,cutoff=0.1) {
       axis.text.x = element_text(size=10,angle = 0, hjust = 1),
       axis.text.y = element_text(size=15,angle = 0, hjust = 1)
     )
-  #wbp <- pptx(template = system.file("data","chem_rich_temp.pptx", package = "reportTemplates"))
-  wbp <- pptx(template = "./data/chem_rich_temp.pptx")
+  wbp <- pptx(template = system.file("data","chem_rich_temp.pptx", package = "ChemRICH"))
+  #wbp <- pptx(template = "./data/chem_rich_temp.pptx")
   wbp <- addSlide( wbp, "lipidClust" )
   wbp <- addPlot( wbp,  function() print(p2), offx =0.0 , offy = 0.0, width = 8, height = 6 , vector.graphic = TRUE )
   writeDoc( wbp, file = "chemrich_impact_plot.pptx" )
@@ -776,8 +776,8 @@ getChemRich_windows <- function (stat_file,cutoff=0.1) {
     }
   }
 
-  #wbp <- pptx(template = system.file("data","chem_rich_temp.pptx", package = "chemrich" )) # use this one when using the installed packages.
-  wbp <- pptx(template = "./data/chem_rich_temp.pptx")
+  wbp <- pptx(template = system.file("data","chem_rich_temp.pptx", package = "ChemRICH" )) # use this one when using the installed packages.
+  #wbp <- pptx(template = "./data/chem_rich_temp.pptx")
   wbp <- addSlide( wbp, "lipidClust" )
   wbp <- addPlot( wbp, function() plot.fan.chemrich(hc,clus, dirvec,sizevec), offx =0.1 , offy = -0.1, width = 8, height = 8 , vector.graphic = FALSE )
 
