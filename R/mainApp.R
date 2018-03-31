@@ -61,7 +61,7 @@ arc.cladelabels<-function(tree=NULL,text,node,ln.offset=1.02,
 
 getChemRich_windows <- function (stat_file,cutoff=0.1) {
   letters.x <- c(letters,LETTERS)
-  pacman::p_load(grid,rcdk, RJSONIO,RCurl, dynamicTreeCut,ape,ggplot2,ggrepel,ReporteRs,XLConnect,phytools,plotrix,plotly, htmlwidgets,DT,extrafont,XLConnect)
+  pacman::p_load(grid,rcdk, RJSONIO,RCurl, dynamicTreeCut,ape,ggplot2,ggrepel,ReporteRs,officer,XLConnect,phytools,plotrix,plotly, htmlwidgets,DT,extrafont,XLConnect)
   loadfonts(quiet = T)
   stat_file <- gsub("\r","",stat_file)
   cfile <- strsplit(stat_file,"\n")[[1]]
@@ -141,7 +141,7 @@ getChemRich_windows <- function (stat_file,cutoff=0.1) {
   falabelvec[grep("^FA_[0-9]{1,2}_0$", falabelvec)] <- "Saturated FA"
   falabelvec[grep("^FA_[0-9]{1,2}_[1-9]$", falabelvec)] <- "UnSaturated FA"
 
-  exc <- XLConnect::loadWorkbook("ChemRICH_results.xlsx", create = T)
+  #exc <- XLConnect::loadWorkbook("ChemRICH_results.xlsx", create = T)
 
   ### Get the FP annotations from the CouchDB using CIDS
   idlist <- list()
@@ -546,12 +546,11 @@ getChemRich_windows <- function (stat_file,cutoff=0.1) {
 
   names(clustdf.e) <- c("Cluster name","Cluster size","p-values","FDR","Key compound","Altered metabolites","Increased","Decreased","Increased ratio","Altered Ratio")
 
-  XLConnect::createSheet(exc,'ChemRICH_Results')
-  XLConnect::writeWorksheet(exc, clustdf.e, sheet = "ChemRICH_Results", startRow = 1, startCol = 2)
-
-
-  #write.table(clustdf.e, file="cluster_level_results_altered.txt", col.names = T, row.names = F, quote = F, sep="\t")
+  #XLConnect::createSheet(exc,'ChemRICH_Results')
+  #XLConnect::writeWorksheet(exc, clustdf.e, sheet = "ChemRICH_Results", startRow = 1, startCol = 2)
+  #write.table(clustdf.e, file="cluster_level_results_altered.txt", col.names = T, row.names = F, quote = F, sep="\t")                                     
   #writeLines(toJSON(clustdf), "clusterJson.json")
+                                     
   gdf <- datatable(clustdf.e,options = list(pageLength = 10),rownames = F)
   gdf$width  <- "auto"
   gdf$height <- "auto"
@@ -599,12 +598,22 @@ getChemRich_windows <- function (stat_file,cutoff=0.1) {
       axis.text.x = element_text(size=10,angle = 0, hjust = 1),
       axis.text.y = element_text(size=15,angle = 0, hjust = 1)
     )
-  wbp <- pptx(template = system.file("data","chem_rich_temp.pptx", package = "ChemRICH"))
+  
+   read_pptx() %>%
+    add_slide(layout = "Title and Content", master = "Office Theme") %>%
+    ph_with_vg(code = print(p2), type = "body", width=10, height=8, offx =0.0 , offy = 0.0) %>%
+    print(target = "chemrich_impact_plot.pptx") %>%
+    invisible()
+                                     
+  #wbp <- pptx(template = system.file("data","chem_rich_temp.pptx", package = "ChemRICH"))
   #wbp <- pptx(template = "./data/chem_rich_temp.pptx")
-  wbp <- addSlide( wbp, "lipidClust" )
-  wbp <- addPlot( wbp,  function() print(p2), offx =0.0 , offy = 0.0, width = 8, height = 6 , vector.graphic = TRUE )
-  writeDoc( wbp, file = "chemrich_impact_plot.pptx" )
-  ggsave("chemrich_impact_plot.png", p2,height = 8, width = 12, dpi=300)
+  #wbp <- addSlide( wbp, "lipidClust" )
+  #wbp <- addPlot( wbp,  function() print(p2), offx =0.0 , offy = 0.0, width = 8, height = 6 , vector.graphic = TRUE )
+  #writeDoc( wbp, file = "chemrich_impact_plot.pptx" )
+  
+                 
+                 
+                 ggsave("chemrich_impact_plot.png", p2,height = 8, width = 12, dpi=300)
 
   #ggsave("tst.png",height=9,width=12,dpi=72)
 
@@ -776,20 +785,20 @@ getChemRich_windows <- function (stat_file,cutoff=0.1) {
     }
   }
 
-  wbp <- pptx(template = system.file("data","chem_rich_temp.pptx", package = "ChemRICH" )) # use this one when using the installed packages.
+  #wbp <- pptx(template = system.file("data","chem_rich_temp.pptx", package = "ChemRICH" )) # use this one when using the installed packages.
   #wbp <- pptx(template = "./data/chem_rich_temp.pptx")
-  wbp <- addSlide( wbp, "lipidClust" )
-  wbp <- addPlot( wbp, function() plot.fan.chemrich(hc,clus, dirvec,sizevec), offx =0.1 , offy = -0.1, width = 8, height = 8 , vector.graphic = FALSE )
+  #wbp <- addSlide( wbp, "lipidClust" )
+  #wbp <- addPlot( wbp, function() plot.fan.chemrich(hc,clus, dirvec,sizevec), offx =0.1 , offy = -0.1, width = 8, height = 8 , vector.graphic = FALSE )
 
   #wbp <- addParagraph( wbp, "Compund cluster annotation mapping is provided in the xlsx output file." , offx =0.1 , offy = -0.1, width = 8, height = 8  )
 
-  writeDoc( wbp, file = paste0("chemrich_output_tree.pptx") )
+  #writeDoc( wbp, file = paste0("chemrich_output_tree.pptx") )
   png(file="chemrich_tree.png",width=12,height=15,units="in",res=300)
   plot.fan.chemrich(hc,clus, dirvec,sizevec)
   text(+0.0, +0.8, "ChemRICH : Chemical Similarity Enrichment Analysis", cex = 2.0)
   dev.off()
 
-  ## Export the final compounds result table.
+  ## Export the final compounds result table.  
 
   df1$TreeLabels <- treeLabels
 
@@ -803,11 +812,8 @@ getChemRich_windows <- function (stat_file,cutoff=0.1) {
   gdf$height <- "auto"
   saveWidget(gdf,file="compoundlevel.html",selfcontained = F)
 
-  XLConnect::createSheet(exc,'Compound_ChemRICH')
-  XLConnect::writeWorksheet(exc, df1, sheet = "Compound_ChemRICH", startRow = 1, startCol = 2)
-
-  ### Final Export to XLSx
-  XLConnect::saveWorkbook(exc)
+  l <- list("ChemRICH_Results" = clustdf.e, "Compound_ChemRICH" = df1 )
+  openxlsx::write.xlsx(l, file = "ChemRICH_results.xlsx", asTable = TRUE)
 
 }
 
