@@ -61,7 +61,7 @@ arc.cladelabels<-function(tree=NULL,text,node,ln.offset=1.02,
 
 getChemRich_windows <- function (stat_file,cutoff=0.1) {
   letters.x <- c(letters,LETTERS)
-  pacman::p_load(grid,rcdk, RJSONIO,RCurl, dynamicTreeCut,ape,ggplot2,ggrepel,ReporteRs,officer,XLConnect,phytools,plotrix,plotly, htmlwidgets,DT,extrafont,XLConnect)
+  pacman::p_load(grid,rcdk, RJSONIO,RCurl, dynamicTreeCut,ape,rvg,magrittr,ggplot2,ggrepel,ReporteRs,officer,XLConnect,phytools,plotrix,plotly, htmlwidgets,DT,extrafont,XLConnect)
   loadfonts(quiet = T)
   stat_file <- gsub("\r","",stat_file)
   cfile <- strsplit(stat_file,"\n")[[1]]
