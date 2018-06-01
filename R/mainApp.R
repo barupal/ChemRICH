@@ -575,7 +575,7 @@ getChemRich_windows <- function (stat_file,cutoff=0.1) {
   p2 <- ggplot(clustdf.alt.impact,aes(x=order,y=-log(pvalues)))
   p2 <- p2 + geom_point(aes(size=csize, color=upratio)) +
     #labs(subtitle = "Figure Legend : Point size corresponds to the count of metabolites in the group. Point color shows that proportion of the increased metabolites where red means high and blue means low number of upregulated compounds.")+
-    scale_color_gradient(low = "blue", high = "red")+
+    scale_color_gradient(low = "blue", high = "red", limits=c(0,1))+
     scale_size(range = c(5, 30)) +
     scale_y_continuous("-log (pvalue)",limits = c(0, max(-log(clustdf.alt.impact$pvalues))+4  )) +
     scale_x_continuous(" cluster order on the similarity tree ") +
@@ -622,7 +622,7 @@ getChemRich_windows <- function (stat_file,cutoff=0.1) {
   ###########################################################
 
   p2 <- ggplot(clustdf.alt.impact,aes(label=name,label2=pvalues, label3=csize,label4=Compounds))
-  p2 <- p2 + geom_point(aes(x=order,y=-log(pvalues),size=csize, color=upratio)) + scale_color_gradient(low = "blue", high = "red")+ scale_size(range = c(5, 30)) +
+  p2 <- p2 + geom_point(aes(x=order,y=-log(pvalues),size=csize, color=upratio)) + scale_color_gradient(low = "blue", high = "red", limits=c(0,1))+ scale_size(range = c(5, 30)) +
     #labs(caption = "Figure Legend : Point size corresponds to the count of metabolites in the group. Point color shows that proportion of the increased metabolites where red means high and blue means low number of upregulated compounds.")+
     scale_y_continuous("-log (pvalue)",limits = c(0, max(-log(clustdf.alt.impact$pvalues))+5  )) +
     scale_x_continuous(" cluster order on the similarity tree ") +
