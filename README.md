@@ -116,7 +116,7 @@ It should look like this -
 ```
 ChemRICHWorkFlow::export.chemrich.tables(signif.chemrich.cluster)
 ```
-See ChemRICH_results.xlsx](https://github.com/barupal/chemrich/raw/master/ChemRICH_results.xlsx) file for expected results. 
+See [ChemRICH_results.xlsx](https://github.com/barupal/chemrich/raw/master/ChemRICH_results.xlsx) file for expected results. 
 
 ## Step 15. Visualize correlation, KEGG and Chemical Similarity Links within each module
 ```
