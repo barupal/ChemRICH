@@ -50,9 +50,9 @@ ChemRICHWorkFlow::load.ChemRICH.databases()
 ## Step 5. Data import into R. 
 Select below three lines and click on Run or press crtl+enter.
 ```
-  data_dict <- readxl::read_xlsx("metcor_input.xlsx", sheet="data_dict") # Data Dictionary
-  sample_metadata <- readxl::read_xlsx("metcor_input.xlsx", sheet="sample_metadata") # Sample metadata
-  data_matrix <- readxl::read_xlsx("metcor_input.xlsx", sheet="data_matrix") # Data matrix
+  data_dict <- readxl::read_xlsx("chemrich_input.xlsx", sheet="data_dict") # Data Dictionary
+  sample_metadata <- readxl::read_xlsx("chemrich_input.xlsx", sheet="sample_metadata") # Sample metadata
+  data_matrix <- readxl::read_xlsx("chemrich_input.xlsx", sheet="data_matrix") # Data matrix
 ```
 ## Step 6. Inspect sample_metadata columns.
 ```
