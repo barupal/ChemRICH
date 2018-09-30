@@ -39,7 +39,7 @@ library(ChemRICHWorkFlow)
 ```
 project_name <- "chemrich_1" # Provide this analysis a name. This will be prefixed to all the exported files.
 ```
-## Step 3 . Load require R packages.
+## Step 3 . Load required R packages.
 ```
 ChemRICHWorkFlow::load.ChemRICH.Packages()
 ```
