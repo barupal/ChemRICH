@@ -128,9 +128,12 @@ ChemRICHWorkFlow::chemrich.getIntegratedNetwork("Adenine Nucleotides", "BIOCHEMI
 ```
 ## Step 16. Generate Box and whisker plots
 ```
-ChemRICHWorkFlow::chemrich.generateBWplots(moduleNumber,compoundLabel)
+ChemRICHWorkFlow::chemrich.generateBWplots(moduleName,compoundLabel)
 ```
-
+for example 
+```
+ChemRICHWorkFlow::chemrich.generateBWplots("Adenine Nucleotides", "BIOCHEMICAL NAME")
+```
 ## THE END
 
 ## Use OpenCPU version of ChemRICH, if you want to the run the ChemRICH web-gui locally. 
