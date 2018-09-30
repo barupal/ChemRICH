@@ -99,9 +99,8 @@ signif.chemrich.cluster <- ChemRICHWorkFlow::chemrich.GetSignificantClasses()
 ```
 ChemRICHWorkFlow::export.chemrich.impactPlot(signif.chemrich.cluster)
 ```
-It should look like this - 
-![ChemRICH impact Plot](https://github.com/barupal/chemrich/raw/master/chemrich_1_chemrich_impact_plot.png)
-
+It should look like this -
+<img src="https://github.com/barupal/chemrich/raw/master/chemrich_1_chemrich_impact_plot.png" width="50%">
 ## Step 12 . Export Interactive ChemRICH plots.
 ```
 ChemRICHWorkFlow::export.chemrich.interactivePlot(signif.chemrich.cluster)
@@ -111,7 +110,7 @@ ChemRICHWorkFlow::export.chemrich.interactivePlot(signif.chemrich.cluster)
 ChemRICHWorkFlow::export.chemrich.similarityTree(chemrich.input.file)
 ```
 It should look like this - 
-![Chemical Similarity Tree](https://raw.githubusercontent.com/barupal/chemrich/master/chemrich_tree.png)
+<img src="https://raw.githubusercontent.com/barupal/chemrich/master/chemrich_tree.png" width="50%">
 
 ## Step 14 . Export Results Tables.
 ```
