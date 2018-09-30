@@ -136,7 +136,7 @@ ChemRICHWorkFlow::chemrich.generateBWplots("Adenine Nucleotides", "BIOCHEMICAL N
 ```
 ## THE END
 
-## Use OpenCPU version of ChemRICH, if you want to the run the ChemRICH web-gui locally. 
+## Use OpenCPU version of ChemRICH, if you want to run the ChemRICH web-gui locally. 
 Make sure you have latest JAVA (JDK and JRE both) installed on your computer. [Latest Java](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 
 In R, run the following code.
