@@ -1,7 +1,24 @@
-# ChemRICH
-R package for Chemical Similarity Enrichment Analysis
+# ChemRICH : Chemical Similarity Enrichment Analysis for metabolomics data
 
-ChemRICH installation method
+## Online version 
+ [ChemRICH Online Version](http://chemrich.fiehnlab.ucdavis.edu)
+
+## Citation
+
+[Barupal, D.K. and Fiehn, O., 2017. Chemical Similarity Enrichment Analysis (ChemRICH) as alternative to biochemical pathway mapping for metabolomic datasets Scientific Report 2017. (https://www.nature.com/articles/s41598-017-15231-w)
+
+## Docker image 
+
+ChemRICH docker image (https://hub.docker.com/r/barupal/chemrich-docker/)
+
+# ChemRICH Workflow Script
+
+## Step 1. Install ChemRICH workflow package
+```
+install.packages("https://github.com/barupal/metamapp/blob/master/MetaMapp2017_2.0.1.tar.gz?raw=true", repos = NULL, type = "source")
+```
+
+## Use OpenCPU version of ChemRICH
 
 Make sure you have latest JAVA (JDK and JRE both) installed on your computer. [Latest Java](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 
@@ -28,14 +45,6 @@ opencpu::ocpu_start_server()
 Then go to :
 [ChemRICH Local Version](http://localhost:5656/ocpu/library/ChemRICH/www/)
 
-## Online version 
 
- [ChemRICH Online Version](http://chemrich.fiehnlab.ucdavis.edu)
 
-## Citation
 
-[Barupal, D.K. and Fiehn, O., 2017. Chemical Similarity Enrichment Analysis (ChemRICH) as alternative to biochemical pathway mapping for metabolomic datasets Scientific Report 2017. (https://www.nature.com/articles/s41598-017-15231-w)
-
-## Docker image 
-
-ChemRICH docker image (https://hub.docker.com/r/barupal/chemrich-docker/)
