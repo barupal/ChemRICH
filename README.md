@@ -146,7 +146,7 @@ ChemRICHWorkFlow::chemrich.generateBWplots("Adenine Nucleotides", "BIOCHEMICAL N
 ***
 
 # ChemRICH Class Enrichment Analysis for user-provided classes
-If you do not have SMILES code or InChiKeys for some compounds in our dataset but you do have class information, you can use this workflow to perform the ChemRich analysis. 
+If you do not have SMILES code or InChiKeys for some compounds in your dataset but you do have the class information, you can use this small workflow to perform the ChemRich analysis for your study. 
 
 ## Step 0 Prepare the input data.
 
