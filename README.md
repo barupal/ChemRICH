@@ -1,15 +1,22 @@
 # ChemRICH : Chemical Similarity Enrichment Analysis for metabolomics data
 
+***
 ## Online version 
  [ChemRICH Online Version](http://chemrich.fiehnlab.ucdavis.edu)
+
+***
 
 ## Citation
 
 [Barupal, D.K. and Fiehn, O., 2017. Chemical Similarity Enrichment Analysis (ChemRICH) as alternative to biochemical pathway mapping for metabolomic datasets Scientific Report 2017. (https://www.nature.com/articles/s41598-017-15231-w)
 
+***
+
 ## Docker image 
 
 ChemRICH docker image (https://hub.docker.com/r/barupal/chemrich-docker/)
+
+***
 
 # ChemRICH Workflow Script
 
@@ -136,7 +143,45 @@ ChemRICHWorkFlow::chemrich.generateBWplots("Adenine Nucleotides", "BIOCHEMICAL N
 ```
 ## THE END
 
-## Use OpenCPU version of ChemRICH, if you want to run the ChemRICH web-gui locally. 
+***
+
+# ChemRICH Class Enrichment Analysis for user-provided classes
+If you do not have SMILES code or InChiKeys for some compounds in our dataset but you do have class information, you can use this workflow to perform the ChemRich analysis. 
+
+## Step 0 Prepare the input data.
+
+In RStudio, create a new project environment by clicking on File --> New Project
+
+  Use [chemrich_class_template.xlsx](https://github.com/barupal/chemrich/blob/master/chemrich_class_template.xlsx?raw=true) file as a template. Download it and replace it's content with your study's data.
+  
+ Put "chemrich_class_template.xlsx" file inside the R-studio project directory. 
+
+## Step 1. Install ChemRICH workflow package
+```
+install.packages("https://github.com/barupal/chemrich/blob/master/ChemRICHWorkFlow_0.1.0.tar.gz?raw=true", repos = NULL, type = "source")
+library(ChemRICHWorkFlow)
+```
+
+## Step 2 . Provide a project name
+```
+project_name <- "demo_" # Provide this analysis a name. This will be prefixed to all the exported files.
+```
+## Step 3 . Load required R packages.
+```
+ChemRICHWorkFlow::load.ChemRICH.Packages()
+```
+
+## Step 4. Compute the ChemRICH Enrichment Analysis
+```
+ChemRICHWorkFlow::runChemRICHClass("chemrich_class_template.xlsx",project_name)
+```
+
+Results should have been exported. 
+
+## THE END
+
+***
+# Use OpenCPU version of ChemRICH, if you want to run the ChemRICH web-gui locally. 
 Make sure you have latest JAVA (JDK and JRE both) installed on your computer. [Latest Java](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 
 In R, run the following code.
