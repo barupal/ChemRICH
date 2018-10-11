@@ -38,7 +38,7 @@ The data dictionary file must contain KEGG IDs, SMILES codes and chemical class 
 
 ## Step 1. Install ChemRICH workflow package
 ```
-install.packages("https://github.com/barupal/chemrich/blob/master/ChemRICHWorkFlow_0.1.0.tar.gz?raw=true", repos = NULL, type = "source")
+install.packages("https://github.com/barupal/chemrich/raw/master/ChemRICHWorkFlow_0.1.0.tar.gz", repos = NULL, type = "source")
 library(ChemRICHWorkFlow)
 ```
 
@@ -158,7 +158,7 @@ In RStudio, create a new project environment by clicking on File --> New Project
 
 ## Step 1. Install ChemRICH workflow package
 ```
-install.packages("https://github.com/barupal/chemrich/blob/master/ChemRICHWorkFlow_0.1.0.tar.gz?raw=true", repos = NULL, type = "source")
+install.packages("https://github.com/barupal/chemrich/raw/master/ChemRICHWorkFlow_0.1.0.tar.gz", repos = NULL, type = "source")
 library(ChemRICHWorkFlow)
 ```
 
