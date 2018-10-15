@@ -21,7 +21,9 @@ ChemRICH docker image (https://hub.docker.com/r/barupal/chemrich-docker/)
 # ChemRICH Workflow Script
 
 ## Computer requirement :
+
 R version - R 3.5.1 or latest
+
 Set up Java - follow [these instructions] (https://stackoverflow.com/questions/6492361/problem-loading-rjava)
 
 
