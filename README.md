@@ -24,7 +24,7 @@ ChemRICH docker image (https://hub.docker.com/r/barupal/chemrich-docker/)
 
 R version - R 3.5.1 or latest
 
-Set up Java - follow [these instructions] (https://stackoverflow.com/questions/6492361/problem-loading-rjava)
+Set up Java - follow [these instructions](https://stackoverflow.com/questions/6492361/problem-loading-rjava)
 
 
 ## Step 0 # Prepare the input data.
@@ -156,8 +156,8 @@ ChemRICHWorkFlow::chemrich.generateBWplots("Adenine Nucleotides", "BIOCHEMICAL N
 If you do not have SMILES code or InChiKeys for some compounds in your dataset but you do have the class information, you can use this small workflow to perform the ChemRich analysis for your study. 
 ## Computer requirement :
 R version - R 3.5.1 or latest
-Set up Java - follow [these instructions] (https://stackoverflow.com/questions/6492361/problem-loading-rjava)
 
+Set up Java - follow [these instructions](https://stackoverflow.com/questions/6492361/problem-loading-rjava)
 
 ## Step 0 Prepare the input data.
 
@@ -198,9 +198,8 @@ Results should have been exported.
 
 ## Computer requirement :
 R version - R 3.5.1 or latest
-Set up Java - follow [these instructions] (https://stackoverflow.com/questions/6492361/problem-loading-rjava)
 
-
+Set up Java - follow [these instructions](https://stackoverflow.com/questions/6492361/problem-loading-rjava)
 
 ***
 # Use OpenCPU version of ChemRICH, if you want to run the ChemRICH web-gui locally. 
