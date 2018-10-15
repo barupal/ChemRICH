@@ -127,7 +127,7 @@ See [ChemRICH_results.xlsx](https://github.com/barupal/chemrich/raw/master/ChemR
 
 ## Step 15. Visualize correlation, KEGG and Chemical Similarity Links within each module
 ```
-ChemRICHWorkFlow::chemrich.getIntegratedNetwork <- function(moduleName,compoundLabel)
+ChemRICHWorkFlow::chemrich.getIntegratedNetwork(moduleName,compoundLabel)
 ```
 for example -
 ```
