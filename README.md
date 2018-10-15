@@ -114,7 +114,7 @@ ChemRICHWorkFlow::export.chemrich.interactivePlot(signif.chemrich.cluster)
 ```
 ## step 13 . Export chemical similarity tree
 ```
-ChemRICHWorkFlow::export.chemrich.similarityTree(chemrich.input.file)
+ChemRICHWorkFlow::export.chemrich.similarityTree()
 ```
 It should look like this - 
 <img src="https://raw.githubusercontent.com/barupal/chemrich/master/chemrich_tree.png" width="50%">
