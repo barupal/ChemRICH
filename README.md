@@ -213,14 +213,16 @@ In RStudio, create a new project environment by clicking on File --> New Project
  Put "chemrich_multi_input.xlsx" file inside the R-studio project directory.
 
 ## Step 1. Set global variables 
+```
 project_name <- "chemrich_multi_1" # Provide this analysis a name. This will be prefixed to all the exported files.
 classVariable <- "Class"
 inputfile <- "chemrich_multi_input.xlsx"
 
-
+```
 ## Step 1. Compute the ChemRICH Multiple Analysis
-
+```
 ChemRICHWorkFlow::chemrih_multi_group(inputfile)
+```
 
 ## ChemRICH plots and excel sheets have been exported, check the project directory. 
 
