@@ -212,14 +212,29 @@ In RStudio, create a new project environment by clicking on File --> New Project
 
  Put "chemrich_multi_input.xlsx" file inside the R-studio project directory.
 
-## Step 1. Set global variables 
+## Step 1. Install ChemRICH workflow package
+```
+install.packages("https://github.com/barupal/chemrich/raw/master/ChemRICHWorkFlow_0.1.0.tar.gz", repos = NULL, type = "source")
+library(ChemRICHWorkFlow)
+```
+
+## Step 2 . Load required R packages.
+```
+ChemRICHWorkFlow::load.ChemRICH.Packages()
+```
+## Step 3. Load ChemRICH databases
+```
+ChemRICHWorkFlow::load.ChemRICH.databases()
+```
+
+## Step 4. Set global variables 
 ```
 project_name <- "chemrich_multi_1" # Provide this analysis a name. This will be prefixed to all the exported files.
 classVariable <- "Class"
 inputfile <- "chemrich_multi_input.xlsx"
 
 ```
-## Step 1. Compute the ChemRICH Multiple Analysis
+## Step 5. Compute the ChemRICH Multiple Analysis
 ```
 ChemRICHWorkFlow::chemrih_multi_group(inputfile)
 ```
