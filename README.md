@@ -194,12 +194,35 @@ Results should have been exported.
 
 ***
 
-# ChemRICH Workflow Script for analysis of statistical results from multiple conditions
+# ChemRICH Workflow Script for the analysis of statistical results from multiple conditions
 
 ## Computer requirement :
 R version - R 3.5.1 or latest
 
 Set up Java - follow [these instructions](https://stackoverflow.com/questions/6492361/problem-loading-rjava)
+
+## Step 0 Prepare the data
+
+In RStudio, create a new project environment by clicking on File --> New Project
+
+  Use [chemrich_multi_input.xlsx](https://github.com/barupal/chemrich/blob/master/chemrich_multi_input.xlsx?raw=true) file as a template. Download it and replace it's content with your study's data.
+  It has one sheet-
+
+  1) data_dict - details about compounds. Provide pvalue and foldchange columns for each statistical comparison. 
+
+ Put "chemrich_multi_input.xlsx" file inside the R-studio project directory.
+
+## Step 1. Set global variables 
+project_name <- "chemrich_multi_1" # Provide this analysis a name. This will be prefixed to all the exported files.
+classVariable <- "Class"
+inputfile <- "chemrich_multi_input.xlsx"
+
+
+## Step 1. Compute the ChemRICH Multiple Analysis
+
+ChemRICHWorkFlow::chemrih_multi_group(inputfile)
+
+## ChemRICH plots and excel sheets have been exported, check the project directory. 
 
 ***
 # Use OpenCPU version of ChemRICH, if you want to run the ChemRICH web-gui locally. 
