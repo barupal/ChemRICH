@@ -18,7 +18,92 @@ ChemRICH docker image (https://hub.docker.com/r/barupal/chemrich-docker/)
 
 ***
 
-# ChemRICH Workflow Script
+
+***
+
+# ChemRICH WorkFlow Script for statistical results
+Note : If you want to compute the statistical results from raw data, use the next script (scroll down). 
+
+## Computer requirement :
+
+R version - R 3.5.1 or latest
+
+Set up Java - follow [these instructions](https://stackoverflow.com/questions/6492361/problem-loading-rjava)
+
+## Step 0 # Prepare the input data.
+
+In RStudio, create a new project environment by clicking on File --> New Project
+
+  Use [chemrich_input_stats.xlsx](https://github.com/barupal/chemrich/blob/master/chemrich_input_stats.xlsx?raw=true) file as a template. Download it and replace it's content with your study's data.
+  It has one sheet -
+
+  1) input - details about compounds. First column of this sheet must be "CompoundID", which has to be a unique arbiterary compound identifier such as "CPD0001"
+The input file must contain KEGG IDs, SMILES codes, PubChem IDs, p-value and fold-changes. If you have received data from Metabolon, the file should already have these annotations.
+
+Put "chemrich_input_stats.xlsx" file inside the R-studio project directory. 
+
+## Step 1. Install ChemRICH workflow package
+```
+install.packages("https://github.com/barupal/chemrich/raw/master/ChemRICHWorkFlow_0.1.0.tar.gz", repos = NULL, type = "source")
+library(ChemRICHWorkFlow)
+```
+## Step 2 . Provide a project name
+```
+project_name <- "chemrich_1" # Provide this analysis a name. This will be prefixed to all the exported files.
+```
+## Step 3 . Load required R packages.
+```
+ChemRICHWorkFlow::load.ChemRICH.Packages()
+```
+## Step 4. Load ChemRICH databases
+```
+ChemRICHWorkFlow::load.ChemRICH.databases()
+```
+## Step 5. Data import into R. 
+Select below three lines and click on Run or press crtl+enter.
+```
+ data_dict <- readxl::read_xlsx("chemrich_input_stats.xlsx", sheet="input") # Data Dictionary
+```
+
+## Step 6. Prepare Input for ChemRICH analysis
+Note : compounds having the SMILES codes will be used for the next steps.
+```
+chemrich.input.file <- ChemRICHWorkFlow::prepare.chemrich.input()
+```
+## Step 7. Get Chemical modules
+Note : If you already have chemical classes. Add a column "ChemicalClass" into the data_dict sheet in the chemrich_input.xlsx file.
+```
+chemrich.input.file <- ChemRICHWorkFlow::chemrich.getChemicalClass()
+write.table(chemrich.input.file,paste0(project_name,"chemrich_input_file_with_clases.txt"), col.names = T, row.names = F, quote = F, sep="\t")
+```
+## Step 8. Get significant chemical modules
+```
+signif.chemrich.cluster <- ChemRICHWorkFlow::chemrich.GetSignificantClasses()
+```
+## Step 9 . Visualize enriched modules
+```
+ChemRICHWorkFlow::export.chemrich.impactPlot(signif.chemrich.cluster)
+```
+## Step 10 . Export Interactive ChemRICH plots.
+```
+ChemRICHWorkFlow::export.chemrich.interactivePlot(signif.chemrich.cluster)
+```
+## step 11. Export chemical similarity tree
+```
+ChemRICHWorkFlow::export.chemrich.similarityTree()
+```
+It should look like this - 
+<img src="https://raw.githubusercontent.com/barupal/chemrich/master/chemrich_tree.png" width="50%">
+
+## Step 12. Export Results Tables.
+```
+ChemRICHWorkFlow::export.chemrich.tables(signif.chemrich.cluster)
+```
+See [ChemRICH_results.xlsx](https://github.com/barupal/chemrich/raw/master/ChemRICH_results.xlsx) file for expected results.
+
+***
+
+# ChemRICH Workflow Script to start with raw data. 
 
 ## Computer requirement :
 
