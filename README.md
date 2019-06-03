@@ -1,23 +1,12 @@
 # ChemRICH : Chemical Similarity Enrichment Analysis for metabolomics data
 
 ***
-## Online version 
- [ChemRICH Online Version](http://chemrich.fiehnlab.ucdavis.edu)
-
-***
 
 ## Citation
 
 [Barupal, D.K. and Fiehn, O., 2017. Chemical Similarity Enrichment Analysis (ChemRICH) as alternative to biochemical pathway mapping for metabolomic datasets Scientific Report 2017. (https://www.nature.com/articles/s41598-017-15231-w)
 
 ***
-
-## Docker image 
-
-ChemRICH docker image (https://hub.docker.com/r/barupal/chemrich-docker/)
-
-***
-
 
 ***
 
