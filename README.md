@@ -14,4 +14,5 @@ A new version of ChemRICH has bee developed in R (version 4.0).
 
 ## Visit the new ChemRICH site at [ChemRICH.idsl.me](http://chemrich.idsl.me) (updated August 2020)
 
+ChemRICH is maintained and developed by the Barupal Integrated Data Science Laboratory for Metabolomics and Exposomics (IDSL.ME)
 
