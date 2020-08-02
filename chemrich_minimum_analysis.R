@@ -46,7 +46,7 @@ run_chemrich_basic <- function(inputfile = "name_of_the_xlsx_file") {
     ndf$edirection <- "up"
     ndf$efs <- 1
 
-    if(length(which(ndf$pvalue < 0)) >0) { # if regression models
+    if(length(which(ndf$effect_size < 0)) >0) { # if regression models
       ndf$edirection[which(ndf$effect_size < 0)] <- "down"
       ndf$edirection[which(ndf$pvalue > 0.1)] <- "no change"
       ndf$efs[which(ndf$effect_size < 0)] <- 1/abs(ndf$effect_size[which(ndf$effect_size < 0)])
