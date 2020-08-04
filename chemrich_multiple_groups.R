@@ -44,7 +44,7 @@ project_name <- "chemrich_1" # Provide this analysis a name. This will be prefix
 classVariable <- "Class"
 inputfile <- "20181015_KOMP_chemrich_input.xlsx"
 
-chemrih_multi_group <- function(inputfile) {
+chemrich_multi_group <- function(inputfile) {
   data_dict <- readxl::read_xlsx(inputfile, sheet="data_dict") # Data Dictionary
   pvalvec <- grep("pvalue",names(data_dict))
   classVec <- names(which(table(data_dict[[classVariable]])>2))
