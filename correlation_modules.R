@@ -54,7 +54,7 @@ chemrich_predict_correlation_modules <- function(inputfile = "nameofthefile") {
   clust1 <- cutreeDynamic(hc,distM = as.matrix(1-s),deepSplit =4, minClusterSize = 3)
   clusternames <- paste0("clust_",clust1)
 
-  xdf <- data.frame(compound_name = ndf$CompoundID, order = sapply(ndf$CompoundID, function(x) {which(ndf$CompoundID[hc$order]==x)}), pvalue = 0,effect_size=0,set=clusternames, stringsAsFactors = F)
+  xdf <- data.frame(compound_name = ndf$compound_id, order = sapply(ndf$compound_id, function(x) {which(ndf$compound_id[hc$order]==x)}), pvalue = 0,effect_size=0,set=clusternames, stringsAsFactors = F)
 
   l <- list("raw" = ndf, "chemrich_input" = xdf )
   openxlsx::write.xlsx(l, file = paste0("correlation_modules_prediction.xlsx"), asTable = TRUE)
