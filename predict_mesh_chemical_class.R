@@ -68,11 +68,11 @@ predict_mesh_classes  <- function(inputfile = "nameoftheinputfile") {
 
   if(!file.exists("cidmesh_smiles_fpbit.RData")) {
     load(url("https://github.com/barupal/ChemRICH/blob/master/cidmesh_smiles_fpbit.RData?raw=true"))
-    save(bitloclist, file = "mesh_bit_loc_list.RData")
+    save(df.mega.mesh, file = "mesh_bit_loc_list.RData")
   }
   if(!file.exists("mesh_bit_loc_list.RData")) {
     load(url("https://github.com/barupal/ChemRICH/blob/master/mesh_bit_loc_list.RData?raw=true"))
-    save(df.mega.mesh, file = "cidmesh_smiles_fpbit.RData")
+    save(bitloclist, file = "cidmesh_smiles_fpbit.RData")
   }
   if(!file.exists("treenames.df.RData")) {
     load(url("https://github.com/barupal/ChemRICH/blob/master/treenames.df.RData?raw=true"))
