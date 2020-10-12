@@ -60,31 +60,29 @@ makeSmiles.clean <- function (smi) {
   smi
 }
 
+if(!file.exists("cidmesh_smiles_fpbit.RData")) {
+  load(url("https://github.com/barupal/ChemRICH/blob/master/cidmesh_smiles_fpbit.RData?raw=true"))
+  save(df.mega.mesh, file = "cidmesh_smiles_fpbit.RData")
+}
+if(!file.exists("mesh_bit_loc_list.RData")) {
+  load(url("https://github.com/barupal/ChemRICH/blob/master/mesh_bit_loc_list.RData?raw=true"))
+  save(bitloclist, file = "mesh_bit_loc_list.RData")
+}
+if(!file.exists("treenames.df.RData")) {
+  load(url("https://github.com/barupal/ChemRICH/blob/master/treenames.df.RData?raw=true"))
+  save(treenames.df, file = "treenames.df.RData")
+}
+load("mesh_bit_loc_list.RData")
+load("cidmesh_smiles_fpbit.RData")
+load("treenames.df.RData")
 
+df.mega.mesh$CompoundName <- tolower(df.mega.mesh$CompoundName)
+treenames.df$ClassName <- tolower(treenames.df$ClassName)
 
 predict_mesh_classes  <- function(inputfile = "nameoftheinputfile") {
 
   ndf <- data.frame(readxl::read_xlsx(path = inputfile, sheet = 1), stringsAsFactors = F)
-
-  if(!file.exists("cidmesh_smiles_fpbit.RData")) {
-    load(url("https://github.com/barupal/ChemRICH/blob/master/cidmesh_smiles_fpbit.RData?raw=true"))
-    save(df.mega.mesh, file = "cidmesh_smiles_fpbit.RData")
-  }
-  if(!file.exists("mesh_bit_loc_list.RData")) {
-    load(url("https://github.com/barupal/ChemRICH/blob/master/mesh_bit_loc_list.RData?raw=true"))
-    save(bitloclist, file = "mesh_bit_loc_list.RData")
-  }
-  if(!file.exists("treenames.df.RData")) {
-    load(url("https://github.com/barupal/ChemRICH/blob/master/treenames.df.RData?raw=true"))
-    save(treenames.df, file = "treenames.df.RData")
-  }
-  load("mesh_bit_loc_list.RData")
-  load("cidmesh_smiles_fpbit.RData")
-  load("treenames.df.RData")
-
-  df.mega.mesh$CompoundName <- tolower(df.mega.mesh$CompoundName)
-  treenames.df$ClassName <- tolower(treenames.df$ClassName)
-
+  
   #########################
   ## Fatty acid labels ####
   #########################
