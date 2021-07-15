@@ -82,7 +82,7 @@ treenames.df$ClassName <- tolower(treenames.df$ClassName)
 predict_mesh_classes  <- function(inputfile = "nameoftheinputfile") {
 
   ndf <- data.frame(readxl::read_xlsx(path = inputfile, sheet = 1), stringsAsFactors = F)
-  
+
   #########################
   ## Fatty acid labels ####
   #########################
@@ -146,11 +146,15 @@ predict_mesh_classes  <- function(inputfile = "nameoftheinputfile") {
 
   cat("Computing sub-structure fingerprint\n")
 
+  smiles_list <- sapply(1:nrow(ndf),function(x){
+    rcdk::parse.smiles(ndf$smiles[x])[[1]]
+  })
 
   fps <- t(sapply(1:nrow(ndf), function(x) {
-    #print(x)
+    gc()
+    library(rcdk)
     xy <- 0
-    xy <- as.character(rcdk::get.fingerprint(rcdk::parse.smiles(ndf$smiles[x])[[1]],type="pubchem"))
+    xy <- as.character(rcdk::get.fingerprint(smiles_list[[x]],type="pubchem"))
     xy
   }))
 
@@ -293,14 +297,17 @@ predict_mesh_classes  <- function(inputfile = "nameoftheinputfile") {
   ##### Map the compounds that have atleast 0.75 similarity to others. Only for compunds that do not have any labels.
 
   for ( i in which(finalterm.df$Clabel=="")) { ## if there is a metabolite that has score higher than 0.80 then we get the class using that compound.
+    print(i)
     if(max(s[i,])>0.75) {
       simorder <- order(s[i,],decreasing = T)[which(s[i,][order(s[i,],decreasing = T)]>0.75)]
       simorder.class <- sapply(simorder, function(x) { finalterm.df$Clabel[x]})
       simorder.class <- simorder.class[!is.na(simorder.class)]
-      if(simorder.class[1]!=""){
-        finalterm.df$Clabel[i] <- simorder.class[which(simorder.class!="")][1]
-      } else if(length(simorder.class)>1) {
-        finalterm.df$Clabel[i] <- simorder.class[which(simorder.class!="")][1]
+      if(!is.na(simorder.class[1])){
+        if(simorder.class[1]!=""){
+          finalterm.df$Clabel[i] <- simorder.class[which(simorder.class!="")][1]
+        } else if(length(simorder.class)>1) {
+          finalterm.df$Clabel[i] <- simorder.class[which(simorder.class!="")][1]
+        }
       }
     }
   }
@@ -325,6 +332,7 @@ predict_mesh_classes  <- function(inputfile = "nameoftheinputfile") {
   finalterm.df$gCount <- as.integer(sapply(finalterm.df$Clabel, function(x) { length(grep(x,finalterm.df$Clabel))  }))
 
   for ( i in which(finalterm.df$gCount<3)) { ## Map to the closest ones.
+    print(i)
     if(max(s[i,])>0.85) {
       simorder <- order(s[i,],decreasing = T)[which(s[i,][order(s[i,],decreasing = T)]>0.85)]
       simorder.class <- sapply(simorder, function(x) { finalterm.df$Clabel[x]})
