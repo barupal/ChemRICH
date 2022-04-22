@@ -95,7 +95,7 @@ run_chemrich_basic <- function(inputfile = "name_of_the_xlsx_file") {
       length(which(ndf$set==k))
     })
 
-    clusterdf$alteredMetabolites <- sapply(clusterdf$name, function (k) {length(which(ndf$set==k & ndf$pvalue<0.10))})
+    clusterdf$alteredMetabolites <- sapply(clusterdf$name, function (k) {length(which(ndf$set==k & ndf$pvalue<0.05))})
 
     clusterdf$upcount <- sapply(clusterdf$name, function (k) {length(which(ndf$set==k & ndf$pvalue<0.05 & ndf$edirection == "up"))})
 
