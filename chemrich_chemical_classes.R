@@ -51,17 +51,17 @@ run_chemrich_chemical_classes <- function(inputfile = "nameofthefile") {
 
   if(length(which(ndf$effect_size < 0)) >0) { # if regression models
     ndf$edirection[which(ndf$effect_size < 0)] <- "down"
-    ndf$edirection[which(ndf$pvalue > 0.1)] <- "no change"
+    ndf$edirection[which(ndf$pvalue > 0.05)] <- "no change"
     ndf$efs[which(ndf$effect_size < 0)] <- 1/abs(ndf$effect_size[which(ndf$effect_size < 0)])
     ndf$efs[which(ndf$effect_size > 1)] <- abs(ndf$effect_size[which(ndf$effect_size > 1)])
-    ndf$efs [which(ndf$pvalue > 0.1)] <- 1
+    ndf$efs [which(ndf$pvalue > 0.05)] <- 1
 
   } else { # if student test
     ndf$edirection[which(ndf$effect_size < 1)] <- "down"
-    ndf$edirection[which(ndf$pvalue > 0.1)] <- "no change"
+    ndf$edirection[which(ndf$pvalue > 0.05)] <- "no change"
     ndf$efs[which(ndf$effect_size < 1)] <- 1/ndf$effect_size[which(ndf$effect_size < 1)]
     ndf$efs[which(ndf$effect_size > 1)] <- ndf$effect_size[which(ndf$effect_size > 1)]
-    ndf$efs [which(ndf$pvalue > 0.1)] <- 1
+    ndf$efs [which(ndf$pvalue > 0.05)] <- 1
   }
 
   ndf$xlogp <- as.numeric(sapply(ndf$smiles, function(x)  { rcdk::get.xlogp(rcdk::parse.smiles(x)[[1]]) }))
@@ -70,7 +70,7 @@ run_chemrich_chemical_classes <- function(inputfile = "nameofthefile") {
   clusterids <- clusterids[which(clusterids!="")]
   cluster.pvalues <- sapply(clusterids, function(x) { # pvalues were calculated if the set has at least 2 metabolites with less than 0.10 pvalue.
     cl.member <- which(ndf$set==x)
-    if( length(which(ndf$pvalue[cl.member]<.10)) >0 ){
+    if( length(which(ndf$pvalue[cl.member]<.05)) >0 ){
       pval.cl.member <- ndf$pvalue[cl.member]
       p.test.results <- ks.test(pval.cl.member,"punif",alternative="greater")
       p.test.results$p.value
@@ -89,11 +89,11 @@ run_chemrich_chemical_classes <- function(inputfile = "nameofthefile") {
   })
 
   altrat <- sapply(clusterdf$name, function (k) {
-    length(which(ndf$set==k & ndf$pvalue<0.1))/length(which(ndf$set==k))
+    length(which(ndf$set==k & ndf$pvalue<0.05))/length(which(ndf$set==k))
   })
 
   uprat <-sapply(clusterdf$name, function (k) {
-    length(which(ndf$set==k & ndf$pvalue<0.1 & ndf$edirection == "up"))/length(which(ndf$set==k & ndf$pvalue<0.10))
+    length(which(ndf$set==k & ndf$pvalue<0.05 & ndf$edirection == "up"))/length(which(ndf$set==k & ndf$pvalue<0.05))
   })
 
   clust_s_vec <- sapply(clusterdf$name, function (k) {
