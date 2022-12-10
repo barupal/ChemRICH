@@ -88,7 +88,7 @@ run_chemrich_basic <- function(inputfile = "name_of_the_xlsx_file") {
     })
 
     uprat <-sapply(clusterdf$name, function (k) {
-      length(which(ndf$set==k & ndf$pvalue<0.05 & ndf$edirection == "up"))/length(which(ndf$set==k & ndf$pvalue<0.10))
+      length(which(ndf$set==k & ndf$pvalue<0.05 & ndf$edirection == "up"))/length(which(ndf$set==k & ndf$pvalue<0.05))
     })
 
     clust_s_vec <- sapply(clusterdf$name, function (k) {
